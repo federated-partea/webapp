@@ -1,0 +1,13 @@
+section.centered {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+button.is-loading {
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
+@media only screen and (max-width:1024px) {
+  section.centered { margin-left: 10%; margin-right: 10%; }
+}

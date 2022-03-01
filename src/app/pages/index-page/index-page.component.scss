@@ -1,0 +1,38 @@
+.hero {
+  background-color: #438ece;
+  color: white
+}
+
+div.box {
+  border-radius: 17px;
+}
+
+img.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+  vertical-align: center;
+}
+
+@media (max-width: 768px) {
+  img.logo {
+    width: 200px;
+  }
+}
+
+.buttons {
+  margin-top: 30px
+}
+
+.members {
+  vertical-align: bottom;
+  .column {
+    text-align: center;
+    vertical-align: bottom;
+  }
+}
+
+
+
+

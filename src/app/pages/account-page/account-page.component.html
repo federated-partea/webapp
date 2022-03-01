@@ -1,0 +1,220 @@
+<header class="section">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-half">
+          <p class="title is-size-3-mobile">
+            Account
+          </p>
+          <p class="subtitle is-size-6-mobile">
+            Sign up, Login, Logout.
+          </p>
+        </div>
+        <div class="column is-half">
+          <img class="hero is-pulled-right is-hidden-mobile"
+               src="assets/account/account.svg" alt="account">
+          <img class="hero is-hidden-desktop is-hidden-tablet"
+               src="assets/account/account.svg" alt="account">
+        </div>
+      </div>
+    </div>
+</header>
+
+<!--ACCOUNT PAGE-->
+<div *ngIf="page === 'ACCOUNT'">
+  <div class="container is-fluid">
+    <section class="section centered">
+      <div class="box">
+        <div class="card-content">
+          <div class="content">
+            <p>
+              {{appMessage}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<!--ACCOUNT PAGE END-->
+
+
+<!--SIGNUP AND LOGIN PAGE-->
+<div *ngIf="page === 'SIGNUP' || page === 'LOGIN'">
+  <div class="container is-fluid">
+    <section class="section centered">
+      <div class="box">
+        <div class="card-content">
+          <div class="tabs">
+            <ul>
+              <li [ngClass]="{'is-active': page === 'SIGNUP'}">
+                <a routerLink="/account">
+                  <span class="icon is-small">
+                    <i class="fas fa-user-plus"></i>
+                  </span>
+                  Sign up
+                </a>
+              </li>
+              <li [ngClass]="{'is-active': page === 'LOGIN'}">
+                <a routerLink="/account" [queryParams]="{p:'login'}">
+                  <span class="icon is-small">
+                    <i class="fas fa-sign-in"></i>
+                  </span>
+                  Log in
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="content">
+            <p>
+              {{appMessage}}
+            </p>
+            <!--SIGNUP PAGE-->
+            <div *ngIf="page === 'SIGNUP'">
+              <div *ngIf="step === 1">
+                <form (submit)="signup()" action="#">
+                  <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                      <label for="signupUsername"></label><input [(ngModel)]="signupUsername" class="input" type="email"
+                                                                 placeholder="Username" id="signupUsername"
+                                                                 name="signupUsername">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-user-circle"></i>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="field">
+                    <p class="control has-icons-left">
+                      <label for="signupPassword"></label><input [(ngModel)]="signupPassword" class="input"
+                                                                 type="password" placeholder="Password"
+                                                                 id="signupPassword" name="signupPassword">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="buttons">
+                    <button (click)="signup()" class="button is-primary">
+                      <span class="icon">
+                        <i class="fas fa-user-plus"></i>
+                      </span>
+                      <span>
+                        Sign up
+                      </span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div *ngIf="step === 2">
+                <form (submit)="confirm()" action="#">
+                  <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                      <label for="signupConfirmUsername"></label><input [(ngModel)]="confirmUsername" class="input"
+                                                                        type="text" placeholder="Username"
+                                                                        id="signupConfirmUsername"
+                                                                        name="signupConfirmUsername">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-user-circle"></i>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="field">
+                    <p class="control has-icons-left">
+                      <label for="signupConfirmPassword"></label><input [(ngModel)]="confirmPassword" class="input"
+                                                                        type="password" placeholder="Password"
+                                                                        id="signupConfirmPassword"
+                                                                        name="signupConfirmPassword">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="buttons">
+                    <button (click)="confirm()" class="button is-success">
+                      <span class="icon">
+                        <i class="fas fa-check"></i>
+                      </span>
+                      <span>
+                        Confirm
+                      </span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!--SIGNUP PAGE END-->
+
+            <!--LOGIN PAGE-->
+            <div *ngIf="page === 'LOGIN'">
+              <form (submit)="login()" action="#">
+                <div class="field">
+                  <p class="control has-icons-left has-icons-right">
+                    <label for="loginUsername"></label><input [(ngModel)]="loginUsername" class="input" type="email"
+                                                              placeholder="Username" id="loginUsername"
+                                                              name="loginUsername">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-user-circle"></i>
+                    </span>
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control has-icons-left">
+                    <label for="loginPassword"></label><input [(ngModel)]="loginPassword" class="input" type="password"
+                                                              placeholder="Password" id="loginPassword"
+                                                              name="loginPassword">
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                  </p>
+                </div>
+                <div class="buttons">
+                  <button (click)="login()" class="button is-primary">
+                    <span class="icon">
+                      <i class="fas fa-sign-in"></i>
+                    </span>
+                    <span>
+                      Log in
+                    </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!--LOGIN PAGE END-->
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<!--SIGNUP AND LOGIN PAGES END-->
+
+
+<!--LOGOUT PAGE-->
+<div *ngIf="page === 'LOGOUT'">
+  <div class="container is-fluid">
+    <section class="section centered">
+      <div class="box">
+        <div class="card-content">
+          <div class="content">
+            <p>
+              {{appMessage}}
+            </p>
+            <form (submit)="logout()" action="#">
+              <div class="buttons">
+                <button (click)="logout()" class="button is-danger">
+                  <span class="icon">
+                    <i class="fas fa-sign-out"></i>
+                  </span>
+                  <span>
+                    Log out
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<!--LOGOUT PAGE END-->

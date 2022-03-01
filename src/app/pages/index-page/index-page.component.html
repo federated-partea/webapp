@@ -1,0 +1,197 @@
+<section class="hero is-medium is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-two-fifths">
+          <p class="title">Collaborate in your <br> Time-to-Event Analysis</p>
+          <p class="subtitle">Partea enables you to collaborate with other institutions to perform your time-to-event
+            study. Make use of more data without storing the data centrally. <br>Easy to use. Federated. Collaborative.
+          </p>
+          <div class="column is-hidden-desktop is-hidden-tablet">
+            <img class="center" src="assets/index/partea_front.svg" style="width: 70%;">
+
+          </div>
+          <p><br>
+            <button *ngIf="!user" class="button is-primary is-inverted is-large" style="margin-right: 10px;"
+                    routerLink="/account"
+                    [routerLinkActiveOptions]="{exact: true}"
+                    routerLinkActive="is-active"><span>Sign up</span></button>
+            <button *ngIf="!user" class="button is-primary is-inverted is-large" routerLink="/account"
+                    [queryParams]="{p:'login'}"
+                    [routerLinkActiveOptions]="{exact: true}"
+                    routerLinkActive="is-active"><span>Log in</span></button>
+
+          </p>
+        </div>
+        <div class="column is-hidden-mobile">
+          <img class="center" src="assets/index/partea_front.svg" style="width: 70%;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: #F6F6F6">
+  <div class="container">
+    <div class="columns is-centered">
+
+      <div class="column is-half"><p class="title">Why Partea?</p>
+        <p class="subtitle is-size-4"> Watch the video to see how Partea brings your collaborative time-to-event analysis to
+          another level.</p></div>
+      <div class="column has-text-right">
+        <video controls class="mt-1">
+          <source src="assets/index/partea_explanation_video.mp4" type="video/mp4">
+          Your browser does not support this video.
+        </video>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" style="background-color: #F6F6F6">
+  <div class="container">
+    <div class="columns is-centered">
+
+      <div class="column has-text-left is-hidden-mobile">
+        <img src="assets/index/collaborators.svg" width="70%">
+      </div>
+
+      <div class="column is-half"><p class="title">Collaborative Analysis</p>
+        <p class="subtitle"> Federated and differentially private implementations of the mostly used,
+          state-of-the-art time-to-event analysis algorithms allow you to perform collaborative studies. Create
+          projects, invite collaborators and make use of an immense amount of data without collecting it on a central
+          place. And the best: your data stays locally at your site.</p></div>
+    </div>
+
+    <div class="column has-text-right is-hidden-desktop is-hidden-tablet">
+      <img src="assets/index/collaborators.svg">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-one-third-desktop has-text-centered">
+        <a href="https://ai.googleblog.com/2017/04/federated-learning-collaborative.html" target="_blank">
+          <div class="box"><img src="assets/index/federated_learning.svg" width=43%>
+            <p class="title is-size-3">Federated Learning</p>
+            <p class="subtitle is-size-5">Federated Learning allows an analysis on
+              geographically distributed data. Instead of raw data, only model parameters or local statistics are
+              shared.
+              Partea aggregates these local statistics to a global model which is similar to the model trained on
+              centralized data.</p>
+          </div>
+        </a>
+      </div>
+      <div class="column is-one-third-desktop has-text-centered">
+        <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/dwork.pdf" target="_blank">
+          <div class="box"><img src="assets/index/privacy.svg" width="35%">
+            <p class="title is-size-3">Differential Privacy</p>
+            <p class="subtitle is-size-5">The resulting survival curves can reveal
+              sensitive information about your patients. To prevent this, Partea uses differential privacy, which adds
+              small amounts of noise to the shared statistics, such that the final result does not reveal any patient
+              sensitive information.</p>
+          </div>
+        </a>
+      </div>
+      <div class="column is-one-third-desktop has-text-centered">
+        <a href="https://link.springer.com/chapter/10.1007/978-3-642-32009-5_38" target="_blank">
+          <div class="box"><img src="assets/index/security.svg" width="45%">
+            <p class="title is-size-3">Secure Aggregation</p>
+            <p class="subtitle is-size-5">As even local statistics can in some cases reveal sensitive patient
+              information,
+              Partea uses additive secret sharing, hiding the actual local statistics. Only the global aggregation is
+              then
+              visible for your collaborators and our servers.
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: #F6F6F6">
+  <div class="container">
+
+    <div class="columns">
+      <div class="column is-hidden-mobile"><img src="assets/index/cox_plot.png" style="width: 80%; border-radius: 50px"
+                                                alt="regression_plot"></div>
+      <div class="column is-one-third"><p class="title">Survival regression with Cox proportional hazards model</p>
+        <p class="subtitle">Partea enables collaborative survival regressions to find biomarkers related to the survival
+          of
+          patients.</p></div>
+    </div>
+
+    <div class="column is-hidden-desktop is-hidden-tablet"><img src="assets/index/cox_plot.png"
+                                                                style="border-radius: 50px"
+                                                                alt="regression_plot"></div>
+  </div>
+</section>
+
+<section class="section" style="background-color: #F6F6F6">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third">
+        <p class="title">Survival Function, hazard ratio & logrank test</p>
+        <p class="subtitle"> Partea offers the estimation of survival curves and hazard ratios based on the
+          Kaplan-Meier
+          and Nelson-Aalen estimators. Also, it allows you to compare different groups with the Logrank-test. <br>
+          <br>
+        </p>
+      </div>
+      <div class="column has-text-right is-hidden-mobile">
+        <img src="assets/index/survival_curve.png" style="width: 80%; border-radius: 50px" alt="survival_curve">
+      </div>
+    </div>
+    <div class="column has-text-right is-hidden-deksopt is-hidden-tablet">
+      <img src="assets/index/survival_curve.png" style="border-radius: 50px" alt="survival_curve">
+    </div>
+  </div>
+</section>
+
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <p class="subtitle"><strong>Developed by people from</strong></p>
+      </div>
+    </div>
+    <div class="columns members">
+      <div class="column">
+        <a href="https://www.cosy.bio/" target="_blank"
+           title="University of Hamburg">
+          <img class="logo" style="width: 70%" src="assets/logos/uhh.png">
+        </a>
+      </div>
+      <div class="column">
+        <a href="https://hms.harvard.edu/" target="_blank"
+           title="Harvard Medical School">
+          <img class="logo" src="assets/logos/harvard.png">
+        </a>
+      </div>
+      <div class="column">
+        <a href="https://timi.org/" target="_blank"
+           title="TIMI study group">
+          <img class="logo" src="assets/logos/timi.jpeg">
+        </a>
+      </div>
+
+      <div class="column">
+        <a href="https://www.brighamandwomens.org/" target="_blank"
+           title="Brigham and Women's Hospital">
+          <img style="margin-left: 20px" class="logo" src="assets/logos/bwh.png" width="30%">
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

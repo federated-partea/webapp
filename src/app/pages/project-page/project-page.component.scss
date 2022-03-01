@@ -1,0 +1,40 @@
+.token {
+  font-family: monospace;
+}
+
+p.title.is-size-4 {
+  margin: 0;
+}
+
+span.subtitle {
+  margin-bottom: 20px;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+div.project {
+  margin: 10px;
+}
+
+div.info {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+label.disabled {
+  color: #aaa;
+}
+
+td
+{
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

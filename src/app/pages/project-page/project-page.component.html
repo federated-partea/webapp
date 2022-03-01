@@ -1,0 +1,661 @@
+<header class="section">
+  <div class="container">
+    <div class="columns is-vcentered">
+      <div class="column is-half">
+        <p class="title is-size-3-mobile">
+          {{ project.name}}
+        </p>
+        <p class="subtitle is-size-6-mobile">
+          ID: {{ project.id }} - State: {{ project.state }}
+        </p>
+      </div>
+
+      <div class="column is-half">
+        <img class="hero is-pulled-right is-hidden-mobile"
+             src="assets/project/project.svg" alt="project">
+        <img class="hero is-hidden-desktop is-hidden-tablet"
+             src="assets/project/project.svg" alt="project">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container is-fluid">
+  <section class="section">
+
+    <div class="box" *ngIf="project.state === 'error'">
+      <div class="card-content">
+        <div class="content">
+          <p class="title is-size-3-mobile" style="color: #FF6584">Computation failed.</p>
+          <p class="subtitle is-size-6-mobile"> Please create a new project and try again. The traffic can help you to
+            identify the problem.</p>
+          <div class="container">
+            <p>{{project.error_message}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" *ngIf="hasResults()">
+      <div class="card-content">
+        <div class="content">
+          <div class="columns">
+            <div class="column is-one-fifth is-hidden-tablet is-hidden-desktop">
+              <a class="button is-primary is-inverted" (click)="changeVisibility('summary')"
+                 style="float: right">
+                <i *ngIf="summaryVisible" class="fa fa-angle-up"></i>
+                <i *ngIf="!summaryVisible" class="fa fa-angle-down"></i>
+              </a>
+            </div>
+            <div class="column">
+              <p class="title is-size-3-mobile">Summary</p>
+              <p class="subtitle is-size-6-mobile"> A summary of your analysis.</p>
+            </div>
+            <div class="column is-one-fifth is-hidden-mobile">
+              <a class="button is-primary is-inverted" (click)="changeVisibility('summary')"
+                 style="float: right">
+                <i *ngIf="summaryVisible" class="fa fa-angle-up"></i>
+                <i *ngIf="!summaryVisible" class="fa fa-angle-down"></i>
+              </a>
+            </div>
+
+          </div>
+
+          <nav class="level" *ngIf="summaryVisible">
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading subtitle is-size-7">Method</p>
+                <p *ngIf="project.method=='cox'" class="title is-size-3 is-size-4-mobile">Regression</p>
+                <p *ngIf="project.method=='univariate'" class="title is-size-3 is-size-4-mobile">Non-Parametric</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading subtitle is-size-7">SMPC</p>
+                <p *ngIf="project.smpc" class="title is-size-3 is-size-4-mobile">True</p>
+                <p *ngIf="!project.smpc" class="title is-size-3 is-size-4-mobile">False</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading subtitle is-size-7">Timeline</p>
+                <p *ngIf="project.timeline=='years'" class="title is-size-3 is-size-4-mobile">Years</p>
+                <p *ngIf="project.timeline=='months'" class="title is-size-3 is-size-4-mobile">Months</p>
+                <p *ngIf="project.timeline=='weeks'" class="title is-size-3 is-size-4-mobile">Weeks</p>
+                <p *ngIf="project.timeline=='days'" class="title is-size-3 is-size-4-mobile">Days</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading subtitle is-size-7">Participants</p>
+                <p class="title is-size-3 is-size-4-mobile">{{ tokens.length }}</p>
+              </div>
+            </div>
+            <div *ngIf="project.privacy_level" class="level-item has-text-centered">
+              <div>
+                <p class="heading subtitle is-size-7">Differential Privacy</p>
+                <p *ngIf="project.privacy_level===0" class="title is-size-3 is-size-4-mobile">None</p>
+                <p *ngIf="project.privacy_level!=0" class="title is-size-3 is-size-4-mobile">
+                  eps={{project.privacy_level}}</p>
+
+              </div>
+            </div>
+            <div *ngIf="project.sample_number" class="level-item has-text-centered">
+              <div>
+                <p class="heading subtitle is-size-7">Samples</p>
+                <p class="title is-size-3 is-size-4-mobile">{{ project.sample_number }}</p>
+              </div>
+            </div>
+            <div *ngIf="project.method == 'cox'" class="level-item has-text-centered">
+              <div>
+                <p class="heading subtitle is-size-7">Covariates</p>
+                <p class="title is-size-3 is-size-4-mobile">{{ selectedResultTable.rowCount }}</p>
+              </div>
+            </div>
+            <div *ngIf="project.c_index" class="level-item has-text-centered">
+              <div>
+                <p class="heading subtitle is-size-7">C-Index</p>
+                <p class="title is-size-3 is-size-4-mobile">{{ project.c_index | number: '1.1-3' }}</p>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" *ngIf="hasResults()">
+      <div class="card-content">
+        <div class="content">
+          <div class="columns">
+            <div class="column">
+              <p class="title is-size-3-mobile">Results</p>
+              <p class="subtitle is-hidden-mobile"> An overview of the results of the collaborative analysis.</p>
+              <p class="subtitle has-text-danger is-size-6-mobile is-hidden-desktop is-hidden-tablet"> Your results are
+                only
+                available on a desktop or tablet.</p>
+            </div>
+            <div class="column is-one-fifth is-hidden-mobile">
+              <a class="button is-primary is-inverted" (click)="changeVisibility('results')"
+                 style="float: right">
+                <i *ngIf="resultsVisible" class="fa fa-angle-up"></i>
+                <i *ngIf="!resultsVisible" class="fa fa-angle-down"></i>
+              </a>
+            </div>
+          </div>
+
+          <div *ngIf="resultsVisible" class="content is-hidden-mobile">
+            <div class="tabs is-centered is-large">
+              <ul>
+                <li *ngFor="let resultTable of resultTables"
+                    [ngClass]="{'is-active': selectedResultTable.id === resultTable.id}"
+                    (click)="selectResultTable(resultTable)">
+                  <a *ngIf="resultTable.name == 'KM'"> Survival Curve</a>
+                  <a *ngIf="resultTable.name == 'NA'"> Hazard Rate</a>
+                  <a *ngIf="resultTable.name == 'Pairwise Logrank Test'"> Pairwise Logrank Test</a>
+                  <a *ngIf="resultTable.name == 'COX'"> Cox Regression</a>
+                  <a *ngIf="resultTable.name == 'Random Survival Forest'"> Random Survival Forest</a>
+                </li>
+              </ul>
+            </div>
+            <div class="content" *ngIf="!!selectedResultTable && project.state === 'finished'">
+
+              <div class="content" *ngIf="plot.data">
+                <div class="container">
+
+                  <plotly-plot id="plot" [data]="plot.data" [layout]="plot.layout"></plotly-plot>
+                </div>
+                <div class="control">
+                  <div class="columns">
+                    <div class="column is-four-fifths">
+
+                    </div>
+                    <div class="column is-one-fifth">
+                      <button style="float: right" class="button is-primary" (click)="downloadSVG()">
+                        <span class="icon"><i class="fa fa-download"></i></span>
+                        <span>Download SVG</span>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="content">
+                <div class="table-container">
+                  <table class="table is-hoverable is-striped is-fullwidth i">
+                    <thead>
+                    <tr>
+                      <th *ngFor="let column of selectedResultTable.columns">
+                        {{ column }}
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody class="scrollable" *ngIf="project.method == 'cox'">
+                    <tr *ngFor="let row of selectedResults">
+                      <td>{{ row.columns[0] }}</td>
+                      <td *ngFor="let cell of row.columns.slice(1)">
+                        <p *ngIf="cell.includes('e')"> {{ConvertStringToNumber(cell).toExponential(3)}} </p>
+                        <p *ngIf="!cell.includes('e')"> {{ConvertStringToNumber(cell).toPrecision(3)}} </p>
+                      </td>
+                    </tr>
+                    </tbody>
+                    <tbody
+                      *ngIf="project.method == 'univariate' && selectedResultTable.name != 'Pairwise Logrank Test'">
+                    <tr *ngFor="let row of selectedResults">
+                      <td *ngFor="let cell of row.columns">
+                        <p> {{ConvertStringToNumber(cell) | number:'1.0-3'}} </p>
+                      </td>
+                    </tr>
+                    </tbody>
+                    <tbody
+                      *ngIf="project.method == 'univariate' && selectedResultTable.name == 'Pairwise Logrank Test'">
+                    <tr *ngFor="let row of selectedResults">
+                      <td>{{ row.columns[0] }}</td>
+                      <td>{{ row.columns[1] }}</td>
+                      <td *ngFor="let cell of row.columns.slice(2)">
+                        <p *ngIf="cell.includes('e')"> {{ConvertStringToNumber(cell).toExponential(3)}} </p>
+                        <p *ngIf="!cell.includes('e')"> {{ConvertStringToNumber(cell).toPrecision(3)}} </p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="control">
+                <div class="columns">
+                  <div class="column is-four-fifths">
+
+                  </div>
+                  <div class="column is-one-fifth">
+                    <a style="float: right" class="button is-primary" [href]="downloadLink">
+                      <span class="icon"><i class="fa fa-download"></i></span>
+                      <span>Download Table</span>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" *ngIf="tokens !== null">
+      <div class="card-content">
+        <div class="content">
+          <div class="columns">
+            <div class="column is-one-fifth is-hidden-tablet is-hidden-desktop">
+              <a class="button is-primary is-inverted" (click)="changeVisibility('parameters')"
+                 style="float: right">
+                <i *ngIf="parametersVisible" class="fa fa-angle-up"></i>
+                <i *ngIf="!parametersVisible" class="fa fa-angle-down"></i>
+              </a>
+            </div>
+            <div class="column">
+              <p class="title is-size-3-mobile">Parameters</p>
+              <p class="subtitle is-size-6-mobile"> Parameters of the survival analysis. After initialization, this
+                cannot be changed anymore.</p>
+            </div>
+            <div class="column is-one-fifth is-hidden-mobile">
+              <a class="button is-primary is-inverted" (click)="changeVisibility('parameters')"
+                 style="float: right">
+                <i *ngIf="parametersVisible" class="fa fa-angle-up"></i>
+                <i *ngIf="!parametersVisible" class="fa fa-angle-down"></i>
+              </a>
+            </div>
+          </div>
+
+          <div *ngIf="parametersVisible" [style.pointer-events]=((global_parameters_pointer_events))>
+            <div class="info">
+              <p class="title is-size-4 is-size-5-mobile">1. Method</p>
+              <span class="icon has-text-info"><i class="fas fa-info-circle"></i></span>
+              <span class="subtitle is-size-6-mobile">What kind of analysis do you want to perform?</span>
+              <div class="control">
+                <label class="radio">
+                  <input class="is-checkradio" [(ngModel)]="method" type="radio" name="method"
+                         value="univariate" [style.opacity]=((global_parameters_opacity))>
+                  Survival Curve/Hazard Ratio/Logrank Test
+                  <input class="is-checkradio" [(ngModel)]="method" type="radio" name="method"
+                         value="cox" [style.opacity]=((global_parameters_opacity))>
+                  Cox Proportional Hazards Model
+                </label>
+              </div>
+
+              <div class="info">
+                <p class="title is-size-4 is-size-5-mobile">2. Timeline</p>
+                <span class="icon has-text-info"><i class="fas fa-info-circle"></i></span>
+                <span class="subtitle is-size-6-mobile">What is the format of the time column in your dataset?.</span>
+                <div class="control" style="margin-bottom: 10px">
+                  <label class="radio">
+                    <input (input)="activateTimeline()" [(ngModel)]="timeline" type="radio" name="timeline"
+                           value="years" [style.opacity]=((global_parameters_opacity))>
+                    Years
+                  </label>
+                  <label class="radio">
+                    <input (input)="activateTimeline()" [(ngModel)]="timeline" type="radio" name="timeline"
+                           value="months" [style.opacity]=((global_parameters_opacity))>
+                    Months
+                  </label>
+                  <label class="radio">
+                    <input (input)="activateTimeline()" [(ngModel)]="timeline" type="radio" name="timeline"
+                           value="weeks" [style.opacity]=((global_parameters_opacity))>
+                    Weeks
+                  </label>
+                  <label class="radio">
+                    <input (input)="activateTimeline()" [(ngModel)]="timeline" type="radio" name="timeline"
+                           value="days" [style.opacity]=((global_parameters_opacity))>
+                    Days
+                  </label>
+                </div>
+
+                <div class="info">
+                  <p class="title is-size-4 is-size-5-mobile">3. Secure Aggregation</p>
+                  <span class="icon has-text-info"><i class="fas fa-info-circle"></i></span>
+                  <span class="subtitle is-size-6-mobile">Do you want to use secure aggregation? If yes, our server cannot see your local statistics.</span>
+                  <div class="control" style="margin-bottom: 10px">
+                    <label class="radio">
+                      <input [value]="true" [(ngModel)]="smpc" type="radio" name="smpc" [style.opacity]=((global_parameters_opacity))>
+                      Yes (more privacy, less accurate)
+                    </label>
+                    <label class="radio">
+                      <input [(ngModel)]="smpc" type="radio" name="smpc" [style.opacity]=((global_parameters_opacity)) [value]="false">
+                      No (faster and more accurate)
+                    </label>
+                  </div>
+
+                  <div class="info" *ngIf="smpc">
+                    <span class="icon has-text-info"><i class="fas fa-info-circle"></i></span>
+                    <span class="subtitle is-size-6-mobile">Define the time range you want to analyze.</span>
+                    <div class="field is-grouped is-grouped-multiline">
+                      <p class="control">
+                        <label>
+                          From
+                          <input [(ngModel)]="from_time" class="input"
+                                 type="number" min="0" [style.opacity]=((global_parameters_opacity))>
+                        </label>
+                      </p>
+                      <p class="control">
+                        <label>
+                          To
+                          <input [(ngModel)]="to_time" class="input"
+                                 type="number" min="0" [style.opacity]=((global_parameters_opacity))>
+                        </label>
+                      </p>
+                      <p class="control">
+                        <label>
+                          Step Size
+                          <input [(ngModel)]="step_size" class="input"
+                                 type="number" min="0.1" [style.opacity]=((global_parameters_opacity))>
+                        </label>
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="info" *ngIf="method==='univariate'">
+                  <p class="title is-size-4 is-size-5-mobile">4. Category Column</p>
+                  <span class="icon has-text-info"><i class="fas fa-info-circle"></i></span>
+                  <span class="subtitle is-size-6-mobile">Define the column name that contains the categories to compare for survival using the log-rank test.
+                            Leave empty if you want to analyze the dataset as a whole.</span>
+                  <div class="field">
+                    <p class="control">
+                      <label>
+                        <input [(ngModel)]="condition_text" class="input"
+                               type="text"
+                               placeholder="None" [style.opacity]=((global_parameters_opacity))>
+                      </label>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info" *ngIf="method==='univariate'">
+
+                <p class="title is-size-4 is-size-5-mobile"> 5. Differential Privacy</p>
+                <span class="icon has-text-info">
+                      <i class="fas fa-info-circle"></i>
+                    </span> <span class="subtitle is-size-6-mobile">Add differential privacy to the analysis to prevent a recreation of patient-level data from the resulting survival curve/hazard rate. The more data is available, the more privacy can be added.</span>
+                <div class="control">
+                  <label class="radio" style="color: green">
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=1"
+                           value="high" [style.opacity]=((global_parameters_opacity))>
+                    High
+                  </label>
+                  <label class="radio" style="color: yellowgreen">
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=2"
+                           value="medium" [style.opacity]=((global_parameters_opacity))>
+                    Medium
+                  </label>
+                  <label class="radio" style="color: darkorange">
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=3"
+                           value="low" [style.opacity]=((global_parameters_opacity))>
+                    Low
+                  </label>
+                  <label class="radio" style="color: red">
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=0"
+                           value="none" [style.opacity]=((global_parameters_opacity))>
+                    None
+                  </label>
+                  <label class="radio">
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=5"
+                           value="custom" [style.opacity]=((global_parameters_opacity))>
+                    Custom
+                  </label>
+                  <div class="control">
+                    <input *ngIf="privacy_level !== 'none' " [(ngModel)]="epsilon" class="input" type="number" step="1"
+                           value=1 min=1 max=20
+                           [style.opacity]=((global_parameters_opacity))>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info" *ngIf="method==='cox'">
+
+                <p class="title is-size-4 is-size-5-mobile"> 4. Penalizer</p>
+                <span class="icon has-text-info">
+                      <i class="fas fa-info-circle"></i>
+                    </span> <span class="subtitle is-size-6-mobile">
+                 Attach a penalty to the size of the coefficients during regression. This improves
+        stability of the estimates and controls for high correlation between covariates.
+              </span>
+                <div class="control">
+                  <input [(ngModel)]="penalizer" class="input" type="number" step="0.01" min=0.0 max=1.0
+                         [style.opacity]=((global_parameters_opacity))>
+                </div>
+              </div>
+
+              <div class="info" *ngIf="method==='cox'">
+
+                <p class="title is-size-4 is-size-5-mobile"> 5. L1-ratio</p>
+                <span class="icon has-text-info">
+                      <i class="fas fa-info-circle"></i>
+                    </span> <span class="subtitle is-size-6-mobile">
+                  Specify what ratio to assign to a L1 vs L2 penalty.
+              </span>
+                <div class="control">
+                  <input [(ngModel)]="l1_ratio" class="input" type="number" step="0.01" min=0.0 max=1.0
+                         [style.opacity]=((global_parameters_opacity))>
+                </div>
+              </div>
+
+              <div class="info" *ngIf="method==='cox'">
+
+                <p class="title is-size-4 is-size-5-mobile"> 6. Stopping criterion</p>
+                <span class="icon has-text-info">
+                      <i class="fas fa-info-circle"></i>
+                    </span> <span class="subtitle is-size-6-mobile">
+                  Specify the maximum number of iterations that should be performed.
+              </span>
+                <div class="control">
+                  <input [(ngModel)]="max_iters" class="input" type="number" min=1 placeholder="10"
+                         [style.opacity]=((global_parameters_opacity))>
+                </div>
+              </div>
+
+            </div>
+
+            <div>
+              <button (click)="initializeProject()" [style.visibility]="init_button_visibility"
+                      class="button is-primary"> Initialize
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" *ngIf="haveRole('owner') && tokens !== null">
+      <div class="card-content">
+        <div class="content">
+          <div class="columns">
+            <div class="column is-one-fifth is-hidden-tablet is-hidden-desktop">
+              <a class="button is-primary is-inverted" (click)="changeVisibility('collab')"
+                 style="float: right">
+                <i *ngIf="collabVisible" class="fa fa-angle-up"></i>
+                <i *ngIf="!collabVisible" class="fa fa-angle-down"></i>
+              </a>
+            </div>
+            <div class="column">
+              <p class="title is-size-3-mobile">Collaborators</p>
+              <p class="subtitle is-size-6-mobile"> Invite collaborators to join the project and make use of more data
+                without violating the privacy.</p>
+            </div>
+            <div class="column is-one-fifth is-hidden-mobile">
+              <a class="button is-primary is-inverted" (click)="changeVisibility('collab')"
+                 style="float: right">
+                <i *ngIf="collabVisible" class="fa fa-angle-up"></i>
+                <i *ngIf="!collabVisible" class="fa fa-angle-down"></i>
+              </a>
+            </div>
+          </div>
+
+          <div *ngIf="collabVisible" class="content"
+               [style.pointer-events]=((contributors_pointer_events)) [style.opacity]="contributors_opacity">
+
+            <p *ngIf="project.master_token" (click)="copyToClipboard(project.master_token)" style="cursor: cell"
+               class="subtitle is-size-6-mobile"> Master-Token: {{ project.master_token }}</p>
+
+            <table class="table is-striped is-hoverable is-fullwidth" *ngIf="tokens.length > 0">
+              <thead>
+              <tr>
+                <th class="is-hidden-mobile">ID</th>
+                <th class="is-hidden-mobile">Token</th>
+                <th>User</th>
+                <th class="is-hidden-mobile">Status</th>
+                <th class="is-hidden-mobile"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let token of tokens" (click)="copyToClipboard(token.token)" style="cursor: cell">
+                <td class="is-hidden-mobile">
+                  <span>{{ token.id }}</span>
+                </td>
+                <td class="is-hidden-mobile">
+                  <span class="token">{{ token.token }}</span>
+                </td>
+                <td>
+                  <span *ngIf="token.name">{{ token.name }}</span>
+                  <span *ngIf="!token.name"></span>
+                </td>
+                <td class="is-hidden-mobile">
+                  <span style="padding: 10px">{{ token.lastAction }}</span>
+                  <span *ngIf="token.lastAction === 'Joined'"><i class="fa fa-check-circle"></i></span>
+                  <span *ngIf="token.lastAction === 'Running'"><i class="fa fa-play-circle"></i></span>
+                  <span *ngIf="token.lastAction === 'Unused'"><i class="fa fa-pause-circle"></i></span>
+                  <span *ngIf="token.lastAction === 'Disconnected'"><i class="fa fa-exclamation-triangle"></i></span>
+                </td>
+                <td class="is-hidden-mobile">
+                  <button [style.opacity]=((contributors_opacity)) class="button is-small is-danger"
+                          (click)="deleteToken(token)">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <p *ngIf="project.state !== 'pre_start'">
+              <i *ngIf="tokens.length == 0">
+                You have not created any tokens yet.
+              </i>
+            </p>
+            <p *ngIf="project.state === 'pre_start'">
+              <i *ngIf="tokens.length == 0">
+                Please initialize the project to create tokens and invite collaborators.
+              </i>
+            </p>
+            <div class="field">
+              <div [style.opacity]=((contributors_opacity)) class="control">
+                <button class="button is-hidden-mobile" (click)="createToken()">
+                  <i class="fa fa-plus icon"></i>
+                  <span>Create token</span>
+                </button>
+                <button [disabled]="!projectRunPossible"
+                        style="float: right" class="button is-primary is-hidden-mobile"
+                        (click)="runProject()">
+                  <i class="fa fa-rocket icon"></i>
+                  <span>Run Project</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" *ngIf="haveRole('owner') && traffic !== null">
+      <div class="card-content">
+        <div class="content">
+          <div class="columns">
+            <div class="column is-one-fifth is-hidden-tablet is-hidden-desktop">
+              <a class="button is-primary is-inverted" (click)="changeVisibility('traffic')"
+                 style="float: right">
+                <i *ngIf="trafficVisible" class="fa fa-angle-up"></i>
+                <i *ngIf="!trafficVisible" class="fa fa-angle-down"></i>
+              </a>
+            </div>
+            <div class="column">
+              <p class="title is-size-3-mobile">Traffic</p>
+              <p class="subtitle is-size-6-mobile"> Overview about the traffic between the clients.</p>
+              <p class="subtitle is-size-6-mobile" *ngIf="project.run_end">Computation finished
+                in  {{project_duration.toPrecision(3)}} {{duration_format}}</p>
+            </div>
+            <div class="column is-one-fifth is-hidden-mobile">
+              <a class="button is-primary is-inverted" (click)="changeVisibility('traffic')"
+                 style="float: right">
+                <i *ngIf="trafficVisible" class="fa fa-angle-up"></i>
+                <i *ngIf="!trafficVisible" class="fa fa-angle-down"></i>
+              </a>
+            </div>
+          </div>
+          <div *ngIf="trafficVisible" class="content">
+            <div class="field">
+              <div *ngFor="let client of clients" class="checkbox">
+                <input type="checkbox" id="{{client}}}-filter" [(ngModel)]="filterClient[client]"/>
+                <label for="{{client}}}-filter">Client {{ client }}</label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="filter-direction">Direction</label>
+              <div class="control has-icons-left">
+                <div class="select">
+                  <select id="filter-direction" [(ngModel)]="filterDirection">
+                    <option [ngValue]="null">both directions</option>
+                    <option [ngValue]="'in'">incoming</option>
+                    <option [ngValue]="'out'">outgoing</option>
+                  </select>
+                </div>
+                <span class="icon is-medium is-left">
+                            <i class="fa"
+                               [ngClass]="{'fa-arrow-right': filterDirection === 'in', 'fa-arrow-left': filterDirection === 'out', 'fa-arrows-h': filterDirection === null}"></i>
+                          </span>
+              </div>
+            </div>
+            <div class="box">
+              <p class="subtitle" *ngIf="traffic.length == 0">No traffic yet</p>
+              <table class="table is-striped is-fullwidth" *ngIf="traffic.length > 0" style="table-layout: fixed;
+width: 100%;">
+                <thead>
+                <tr>
+                  <th class="is-hidden-mobile">Time</th>
+                  <th class="is-hidden-mobile">Direction</th>
+                  <th>State</th>
+                  <th>Size</th>
+                  <th class="is-hidden-mobile">Preview</th>
+                  <th>User</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let log of filteredTraffic">
+                  <td class="is-hidden-mobile">
+                    <span>{{ log.createdAt | date: 'short' }}</span>
+                  </td>
+                  <td>
+                    <span>{{ log.direction }}</span>
+                  </td>
+                  <td>
+                    <span>{{ log.state }}</span>
+                  </td>
+                  <td>
+                    <span>{{ log.size | byteSize }}</span>
+                  </td>
+                  <td class="is-hidden-mobile">
+                    <span>{{ log.preview }}</span>
+                  </td>
+                  <td>
+                    <span>{{ log.tokenId }}</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+

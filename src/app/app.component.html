@@ -1,0 +1,88 @@
+<div class="main-wrapper">
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand"><a routerLink="/">
+      <img src="assets/logos/partea_logo_new.svg" alt="PARTEA" style="height: 40px; margin-top:5px">
+    </a>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+         data-target="parteaNavbar" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');">
+        <span aria-hidden="true"></span> <span aria-hidden="true"></span> <span
+        aria-hidden="true"></span> </a></div>
+    <div id="parteaNavbar" class="navbar-menu">
+      <div class="navbar-end">
+        <a routerLink="/projects" routerLinkActive="is-active" class="navbar-item" *ngIf="user">
+          <span>Projects</span>
+        </a>
+
+        <a routerLink="/how-to" routerLinkActive="is-active" class="navbar-item">
+          <span>Getting started</span>
+        </a>
+
+        <a routerLink="/about" routerLinkActive="is-active" class="navbar-item">
+          <span>About</span>
+        </a>
+
+        <a routerLink="/account" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="is-active"
+           class="navbar-item" *ngIf="user">
+          <span class="icon"><i class="fa fa-user-circle"></i></span>
+          <span>{{user.name}}</span>
+        </a>
+
+        <a routerLink="/account" [queryParams]="{p:'login'}" routerLinkActive="is-active" class="navbar-item"
+           *ngIf="!user">
+          <span class="icon"><i class="fa fa-sign-in "></i></span>
+        </a>
+
+        <a routerLink="/account" [queryParams]="{p:'logout'}" routerLinkActive="is-active" class="navbar-item"
+           *ngIf="user">
+          <span class="icon"><i class="fa fa-sign-out"></i></span>
+        </a>
+
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-two-fifths is-hidden-mobile is-hidden-tablet"><span
+        class="copyright">© 2020–2021 Späth et al.</span><br> Chair of Computational Systems Biology, University of
+        Hamburg <br> <br> <a href="mailto:julian.alexander.spaeth@uni-hamburg.de">Write me a mail.</a>
+      </div>
+      <div class="column"><strong>Partea v1.0</strong>
+        <ul>
+          <li><a routerLink="/imprint">Imprint</a></li>
+          <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="column"><strong>Download</strong>
+        <ul>
+          <li><a routerLink="/assets/executables/partea.exe" target="_blank">Windows</a></li>
+          <li><a routerLink="/assets/executables/partea.zip" target="_blank">macOS</a></li>
+          <li><a routerLink="/assets/executables/partea_linux.tar.gz" target="_blank">Linux</a></li>
+          <li><a routerLink="/assets/executables/partea_cli_linux.tar.gz" target="_blank">Linux CLI</a></li>
+        </ul>
+      </div>
+      <div class="column"><strong>Social</strong>
+        <ul>
+          <li><a href="https://gitlab.lrz.de/fedsurv" target="_blank">GitLab</a></li>
+          <li><a href="https://twitter.com/cosybio_uhh" target="_blank">Twitter</a></li>
+        </ul>
+      </div>
+      <div class="column"><strong>Help</strong>
+        <ul>
+          <li><a routerLink="/how-to">Getting Started</a></li>
+          <li><a routerLink="/about">About</a></li>
+        </ul>
+      </div>
+      <div class="column is-two-fifths"><span
+        class="copyright">© 2022 <br>Späth et al.</span><br> Chair of Computational Systems Biology <br> University of
+        Hamburg <br> <a href="mailto:julian.alexander.spaeth@uni-hamburg.de">Contact me</a>
+      </div>
+    </div>
+  </div>
+</footer>
