@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://192.168.0.183:8000',
-  cookieDomain: '192.168.0.183',
+  apiUrl: 'http://localhost:8000',
+  cookieDomain: 'localhost',
 };
 
 /*
