@@ -1,288 +1,312 @@
 <header class="section">
-  <div class="container">
-    <div class="columns is-vcentered">
-      <div class="column is-half">
-        <p class="title is-size-3-mobile">
-          Getting started with Partea
-        </p>
-        <p class="subtitle is-size-6-mobile">
-          A step-by-step guide how-to use Partea
-        </p>
-      </div>
-      <div class="column is-half">
-        <img class="hero is-pulled-right is-hidden-mobile"
-             src="assets/how-to/how-to.svg" alt="how-to">
-        <img class="hero is-hidden-desktop is-hidden-tablet"
-             src="assets/how-to/how-to.svg" alt="how-to">
-      </div>
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class="column is-half">
+                <p class="title is-size-3-mobile">
+                    Getting started with Partea
+                </p>
+                <p class="subtitle is-size-6-mobile">
+                    A step-by-step guide how-to use Partea
+                </p>
+            </div>
+            <div class="column is-half">
+                <img class="hero is-pulled-right is-hidden-mobile"
+                     src="assets/how-to/how-to.svg" alt="how-to">
+                <img class="hero is-hidden-desktop is-hidden-tablet"
+                     src="assets/how-to/how-to.svg" alt="how-to">
+            </div>
+        </div>
     </div>
-  </div>
 </header>
 
 <section class="section">
-  <div class="container content">
-    <div class="columns is-centered">
-      <div class="column"><h1 id="coordinators" class="title anchor is-size-2 is-size-3-mobile has-text-centered">
-        <a routerLink="/how-to" fragment="coordinators"># </a>For project coordinators</h1></div>
+    <div class="container content">
+        <div class="columns is-centered">
+            <div class="column"><h1 id="coordinators" class="title anchor is-size-2 is-size-3-mobile has-text-centered">
+                <a routerLink="/how-to" fragment="coordinators"># </a>For project coordinators</h1></div>
+        </div>
+
+        <!-- 1. Create Project-->
+        <div class="columns is-centered">
+            <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">1. Create a new project</h2>
+                <p class="is-size-4 is-size-6-mobile">Go to the <a target="_blank"
+                                                                   routerLink="/projects"><b>Projects</b></a>
+                    page, type in the
+                    project name and click the create button.
+                </p>
+                <p class=" is-size-4 is-size-6-mobile">For this you need to be logged in. Please <a target="_blank"
+                                                                                                    routerLink="/account">register</a>
+                    or
+                    <a target="_blank" routerLink="/account" [queryParams]="{p:'login'}">log in</a> first.</p>
+            </div>
+
+            <div class="column is-5 has-text-centered is-narrow">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/create_project.png">
+                </figure>
+            </div>
+
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
+        <!-- 2. Initialize project parameters -->
+        <div class="columns is-centered">
+            <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">2. Initialize the project
+                parameters</h2>
+                <p class="is-size-4 is-size-6-mobile">In the <b>Parameters</b> section of the project page, define the
+                    Method
+                    (Univariate
+                    Analysis or
+                    Survival Regression) and further global parameters.
+                </p>
+                <p class="is-size-6 is-size-7-mobile">This information helps other participants to preprocess their data
+                    the
+                    right way.
+                </p>
+            </div>
+            <div class="column is-5 has-text-centered is-narrow">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/initialize_project.png">
+                </figure>
+            </div>
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
+        <!-- 3. Invite collaborators -->
+        <div class="columns is-centered">
+            <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">3. Invite collaborators</h2>
+                <p class="is-size-4 is-size-6-mobile">In the <b>Collaborators</b> section, create tokens and share them
+                    with
+                    directly with your
+                    partners as an invitation to your study. You can also share the master token for larger studies that
+                    you can
+                    share multiple times.
+                </p>
+            </div>
+
+            <div class="column is-5 has-text-centered is-narrow">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/invite_collaborators.png">
+                </figure>
+            </div>
+
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
+        <!-- 4. Run project -->
+        <div class="columns is-centered">
+            <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">4. Run project</h2>
+                <p class="is-size-4 is-size-6-mobile">In the <b>Collaborators</b> section of the project page, press the
+                    <b>Run
+                        Project</b>
+                    button when every participant has joined.
+                    If you also want to join as a participant, create a token for yourself and follow the steps in the
+                    <a
+                            routerLink="/how-to" fragment="participants">For project participants section</a>.
+                </p>
+            </div>
+            <div class="column is-5 has-text-centered is-narrow">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/run_project.png">
+                </figure>
+            </div>
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
+        <!-- 5. Enjoy your results :-) -->
+        <div class="columns is-centered">
+            <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">5. Enjoy the results :-)</h2>
+                <p class="is-size-4 is-size-6-mobile">In the <b>Summary</b> section of the project page, you get an
+                    overview
+                    about your project.
+                    In the <b>Results</b> section of the proejct page, you can see the plots of your models and a table
+                    containing
+                    the data.
+                    You can download all the results directly from this page.
+                </p>
+            </div>
+            <div class="column is-5 has-text-centered is-narrow">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/results_project.png">
+                </figure>
+            </div>
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
     </div>
-
-    <!-- 1. Create Project-->
-    <div class="columns is-centered">
-      <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">1. Create a new project</h2>
-        <p class="is-size-4 is-size-6-mobile">Go to the <a target="_blank" routerLink="/projects"><b>Projects</b></a>
-          page, type in the
-          project name and click the create button.
-        </p>
-        <p class=" is-size-4 is-size-6-mobile">For this you need to be logged in. Please <a target="_blank"
-                                                                                            routerLink="/account">register</a>
-          or
-          <a target="_blank" routerLink="/account" [queryParams]="{p:'login'}">log in</a> first.</p>
-      </div>
-
-      <div class="column is-5 has-text-centered is-narrow">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/create_project.png">
-        </figure>
-      </div>
-
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-    <!-- 2. Initialize project parameters -->
-    <div class="columns is-centered">
-      <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">2. Initialize the project
-        parameters</h2>
-        <p class="is-size-4 is-size-6-mobile">In the <b>Parameters</b> section of the project page, define the Method
-          (Univariate
-          Analysis or
-          Survival Regression) and further global parameters.
-        </p>
-        <p class="is-size-6 is-size-7-mobile">This information helps other participants to preprocess their data the
-          right way.
-        </p>
-      </div>
-      <div class="column is-5 has-text-centered is-narrow">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/initialize_project.png">
-        </figure>
-      </div>
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-    <!-- 3. Invite collaborators -->
-    <div class="columns is-centered">
-      <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">3. Invite collaborators</h2>
-        <p class="is-size-4 is-size-6-mobile">In the <b>Collaborators</b> section, create tokens and share them with
-          directly with your
-          partners as an invitation to your study. You can also share the master token for larger studies that you can
-          share multiple times.
-        </p>
-      </div>
-
-      <div class="column is-5 has-text-centered is-narrow">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/invite_collaborators.png">
-        </figure>
-      </div>
-
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-    <!-- 4. Run project -->
-    <div class="columns is-centered">
-      <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">4. Run project</h2>
-        <p class="is-size-4 is-size-6-mobile">In the <b>Collaborators</b> section of the project page, press the <b>Run
-          Project</b>
-          button when every participant has joined.
-          If you also want to join as a participant, create a token for yourself and follow the steps in the <a
-            routerLink="/how-to" fragment="participants">For project participants section</a>.
-        </p>
-      </div>
-      <div class="column is-5 has-text-centered is-narrow">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/run_project.png">
-        </figure>
-      </div>
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-    <!-- 5. Enjoy your results :-) -->
-    <div class="columns is-centered">
-      <div class="column is-5 is-offset-1"><h2 class="subtitle is-size-4-mobile">5. Enjoy the results :-)</h2>
-        <p class="is-size-4 is-size-6-mobile">In the <b>Summary</b> section of the project page, you get an overview
-          about your project.
-          In the <b>Results</b> section of the proejct page, you can see the plots of your models and a table containing
-          the data.
-          You can download all the results directly from this page.
-        </p>
-      </div>
-      <div class="column is-5 has-text-centered is-narrow">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/results_project.png">
-        </figure>
-      </div>
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-  </div>
 </section>
 
 <section class="section">
-  <div class="container content">
-    <div class="columns is-centered">
-      <div class="column"><h1 id="participants" class="title anchor is-size-2 is-size-3-mobile has-text-centered">
-        <a routerLink="/how-to" fragment="participants"># </a>For project participants</h1>
-      </div>
+    <div class="container content">
+        <div class="columns is-centered">
+            <div class="column"><h1 id="participants" class="title anchor is-size-2 is-size-3-mobile has-text-centered">
+                <a routerLink="/how-to" fragment="participants"># </a>For project participants</h1>
+            </div>
+        </div>
+
+        <!-- 1. Create Project-->
+        <div class="columns is-centered">
+            <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/create_project.png">
+                </figure>
+            </div>
+            <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">1. Download the <b>PARTEA</b>
+                client</h2>
+                <p class="is-size-4 is-size-6-mobile">Download the <b>PARTEA</b> GUI client:</p>
+                <ul>
+                    <li class="is-size-6 is-size-6-mobile"><a target="_blank"
+                                                              routerLink="/assets/executables/partea-linux.zip"><b>Linux
+                        GUI</b></a>
+                    </li>
+                    <li class="is-size-6 is-size-6-mobile"><a target="_blank"
+                                                              routerLink="/assets/executables/partea-macos.zip"><b>macOS
+                        GUI</b></a></li>
+                    <li class="is-size-6 is-size-6-mobile"><a target="_blank"
+                                                              routerLink="/assets/executables/partea-windows.zip"><b>Windows
+                        GUI</b></a>
+                    </li>
+                </ul>
+
+                <p class="tag is-warning">Google Chrome needs to be installed</p> <br>
+                <p class="tag is-warning">Starting the GUI can take some time</p>
+
+                <p class="is-size-4 is-size-6-mobile">Advanced users can also use the Docker CLI tool:
+                <ul>
+                    <li class="is-size-6 is-size-6-mobile">
+                        <span class="icon"><i class="fab fa-docker"></i></span>
+                        <span><b><code>docker pull registry.blitzhub.io/partea-cli</code></b></span>
+                    </li>
+                </ul>
+
+                <p class="is-size-4 is-size-6-mobile">Download Sample Data</p>
+                <ul>
+                    <li><a href="assets/sample_data.zip">Rossi - 3 Clients </a> <a target='_blank'
+                                                                                   href="https://rdrr.io/cran/RcmdrPlugin.survival/man/Rossi.html">(Source)</a>
+                    </li>
+                    <li>Duration Column: week</li>
+                    <li>Event Column: arrest</li>
+                    <li>Category Column: mar (optional)</li>
+                </ul>
+            </div>
+            <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-desktop">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/create_project.png">
+                </figure>
+            </div>
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
+        <!-- 2. Login and join Project-->
+        <div class="columns is-centered">
+            <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/join_project.png">
+                </figure>
+            </div>
+            <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">2. Login and join project</h2>
+                <p class="is-size-4 is-size-6-mobile">Start the client and join the project with your credentials (<a
+                        target="_blank"
+                        routerLink="/account">Sign
+                    up</a>) and project token you received from the coordinator.</p>
+                <p class="is-size-4 is-size-6-mobile">If you received a master token, you don't necessarily need an
+                    Account. You
+                    can only enter a
+                    username and the
+                    master token. </p>
+
+                <p class="has-text-danger is-size-4 is-size-6-mobile">Be aware, that you don't have access to the
+                    results if you
+                    do not join with an
+                    account. </p>
+
+            </div>
+            <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-desktop">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/join_project.png">
+                </figure>
+            </div>
+
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
+        <!-- 3. Run client -->
+        <div class="columns is-centered">
+            <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/run_client.png">
+                </figure>
+            </div>
+            <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">3. Run client</h2>
+                <p class="is-size-4 is-size-6-mobile">Specify your file columns and choose the path to your local file.
+                <p class="is-size-4 is-size-6-mobile">After everything specified, run the local client by pressing the
+                    <b>Run</b> button. </p>
+
+            </div>
+            <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-desktop">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/run_client.png">
+                </figure>
+            </div>
+
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
+        <!-- 4. Wait for finishing -->
+        <div class="columns is-centered">
+            <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/wait_finish.png">
+                </figure>
+            </div>
+            <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">4. Wait for results</h2>
+                <p class="is-size-4 is-size-6-mobile">Lay back, the computation will start automatically after all
+                    participants
+                    have joined.</p>
+                <p class="is-size-4 is-size-6-mobile">Be aware that your client needs to keep running. Otherwise the
+                    computation
+                    cannot finish
+                    succesfully.</p>
+            </div>
+            <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-deskopt">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/wait_finish.png">
+                </figure>
+            </div>
+
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
+        <!-- 5.  -->
+        <div class="columns is-centered">
+            <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/results_project.png">
+                </figure>
+            </div>
+            <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">5. Enjoy the results :-)</h2>
+                <p class="is-size-4 is-size-6-mobile">Go to the <a target="_blank" routerLink="/projects/"><b>PARTEA</b>
+                    webapp</a>,
+                    login with
+                    your account and select the corresponding
+                    project. </p>
+                <p class="is-size-4 is-size-6-mobile">In the <b>Results</b> section of the proejct page, you can see the
+                    plots
+                    of your models and
+                    a table
+                    containing the data. You can download all the results directly from this page.
+                </p>
+            </div>
+            <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-desktop">
+                <figure class="image is-fullwidth">
+                    <img src="assets/how-to/results_project.png">
+                </figure>
+            </div>
+
+        </div>
+        <hr style="margin-top: 5em; margin-bottom: 2em;">
+
     </div>
-
-    <!-- 1. Create Project-->
-    <div class="columns is-centered">
-      <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/create_project.png">
-        </figure>
-      </div>
-      <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">1. Download the <b>PARTEA</b> client</h2>
-        <p class="is-size-4 is-size-6-mobile">Download the <b>PARTEA</b> GUI client:</p>
-        <ul>
-          <li class="is-size-6 is-size-6-mobile"><a target="_blank" routerLink="/assets/executables/partea_ubuntu.tar.gz"><b>Linux
-            GUI</b></a>
-          </li>
-          <li class="is-size-6 is-size-6-mobile"><a target="_blank" routerLink="/assets/executables/partea_macos.zip"><b>macOS
-            GUI</b></a></li>
-          <li class="is-size-6 is-size-6-mobile"><b>Windows GUI (Coming soon)</b></li>
-        </ul>
-
-        <p class="tag is-warning">Google Chrome needs to be installed</p> <br>
-        <p class="tag is-warning">Starting the GUI can take some time</p>
-
-        <p class="is-size-4 is-size-6-mobile">Advanced users can also use the Docker CLI tool:
-        <ul>
-          <li class="is-size-6 is-size-6-mobile">
-            <span class="icon"><i class="fab fa-docker"></i></span>
-            <span><b><code>docker pull registry.blitzhub.io/partea-cli</code></b></span>
-          </li>
-        </ul>
-
-        <p class="is-size-4 is-size-6-mobile">Download Sample Data</p>
-        <ul>
-          <li><a href="assets/sample_data.zip">Rossi - 3 Clients  </a> <a target='_blank' href="https://rdrr.io/cran/RcmdrPlugin.survival/man/Rossi.html">(Source)</a></li>
-          <li>Duration Column: week</li>
-          <li>Event Column: arrest</li>
-        </ul>
-      </div>
-      <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-desktop">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/create_project.png">
-        </figure>
-      </div>
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-    <!-- 2. Login and join Project-->
-    <div class="columns is-centered">
-      <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/join_project.png">
-        </figure>
-      </div>
-      <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">2. Login and join project</h2>
-        <p class="is-size-4 is-size-6-mobile">Start the client and join the project with your credentials (<a
-          target="_blank"
-          routerLink="/account">Sign
-          up</a>) and project token you received from the coordinator.</p>
-        <p class="is-size-4 is-size-6-mobile">If you received a master token, you don't necessarily need an Account. You
-          can only enter a
-          username and the
-          master token. </p>
-
-        <p class="has-text-danger is-size-4 is-size-6-mobile">Be aware, that you don't have access to the results if you
-          do not join with an
-          account. </p>
-
-      </div>
-      <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-desktop">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/join_project.png">
-        </figure>
-      </div>
-
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-    <!-- 3. Run client -->
-    <div class="columns is-centered">
-      <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/run_client.png">
-        </figure>
-      </div>
-      <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">3. Run client</h2>
-        <p class="is-size-4 is-size-6-mobile">Specify your file columns and choose the path to your local file.
-        <p class="is-size-4 is-size-6-mobile">After everything specified, run the local client by pressing the
-          <b>Run</b> button. </p>
-
-      </div>
-      <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-desktop">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/run_client.png">
-        </figure>
-      </div>
-
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-    <!-- 4. Wait for finishing -->
-    <div class="columns is-centered">
-      <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/wait_finish.png">
-        </figure>
-      </div>
-      <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">4. Wait for results</h2>
-        <p class="is-size-4 is-size-6-mobile">Lay back, the computation will start automatically after all participants
-          have joined.</p>
-        <p class="is-size-4 is-size-6-mobile">Be aware that your client needs to keep running. Otherwise the computation
-          cannot finish
-          succesfully.</p>
-      </div>
-      <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-deskopt">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/wait_finish.png">
-        </figure>
-      </div>
-
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-    <!-- 5.  -->
-    <div class="columns is-centered">
-      <div class="column is-5 has-text-centered is-narrow is-hidden-mobile">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/results_project.png">
-        </figure>
-      </div>
-      <div class="column is-6 is-offset-1"><h2 class="subtitle is-size-4-mobile">5. Enjoy the results :-)</h2>
-        <p class="is-size-4 is-size-6-mobile">Go to the <a target="_blank" routerLink="/projects/"><b>PARTEA</b> webapp</a>,
-          login with
-          your account and select the corresponding
-          project. </p>
-        <p class="is-size-4 is-size-6-mobile">In the <b>Results</b> section of the proejct page, you can see the plots
-          of your models and
-          a table
-          containing the data. You can download all the results directly from this page.
-        </p>
-      </div>
-      <div class="column is-5 has-text-centered is-narrow is-hidden-tablet is-hidden-desktop">
-        <figure class="image is-fullwidth">
-          <img src="assets/how-to/results_project.png">
-        </figure>
-      </div>
-
-    </div>
-    <hr style="margin-top: 5em; margin-bottom: 2em;">
-
-  </div>
 </section>
 
 <!--<section class="section">-->
