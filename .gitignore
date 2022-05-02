@@ -34,9 +34,6 @@ testem.log
   
 # System Files  
 .DS_Store  
-Thumbs.db  
+Thumbs.db
 
-*.mp4
-
-*partea_ubuntu.tar.gz
-*partea_macos.zip
+partea_explanation_video.mp4
