@@ -26,4 +26,4 @@ jobs:
         password: ${{ secrets.BLITZHUB_PW }}
         
     - name: Push to Blitzhub
-      run: docker push registry.blitzhub.io/partea_webapp
+      run: docker push registry.blitzhub.io/partea_webapp:prod
