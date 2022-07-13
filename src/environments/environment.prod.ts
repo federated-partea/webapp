@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   environmentName: 'prod',
-  apiUrl: 'https://exbio.wzw.tum.de/partea/api',
-  cookieDomain: 'exbio.wzw.tum.de',
+  apiUrl: 'http://partea-api.zbh.uni-hamburg.de/',
+  cookieDomain: '*.zbh.uni-hamburg.de',
 };
 

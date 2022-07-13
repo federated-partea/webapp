@@ -379,32 +379,32 @@
                     </span> <span class="subtitle is-size-6-mobile">Add differential privacy to the analysis to prevent a recreation of patient-level data from the resulting survival curve/hazard rate. The more data is available, the more privacy can be added.</span>
                 <div class="control">
                   <label class="radio" style="color: green">
-                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=1"
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="setEpsilon(0.75)"
                            value="high" [style.opacity]=((global_parameters_opacity))>
                     High
                   </label>
                   <label class="radio" style="color: yellowgreen">
-                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=2"
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="setEpsilon(1)"
                            value="medium" [style.opacity]=((global_parameters_opacity))>
                     Medium
                   </label>
                   <label class="radio" style="color: darkorange">
-                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=3"
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="setEpsilon(3)"
                            value="low" [style.opacity]=((global_parameters_opacity))>
                     Low
                   </label>
                   <label class="radio" style="color: red">
-                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=0"
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="setEpsilon(0)"
                            value="none" [style.opacity]=((global_parameters_opacity))>
                     None
                   </label>
                   <label class="radio">
-                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="epsilon=5"
+                    <input [(ngModel)]="privacy_level" type="radio" name="privacy" (click)="setEpsilon(5)"
                            value="custom" [style.opacity]=((global_parameters_opacity))>
                     Custom
                   </label>
                   <div class="control">
-                    <input *ngIf="privacy_level !== 'none' " [(ngModel)]="epsilon" class="input" type="number" step="1"
+                    <input *ngIf="privacy_level !== 'none' " [(ngModel)]="epsilon" class="input" type="number" step="0.1"
                            value=1 min=1 max=20
                            [style.opacity]=((global_parameters_opacity))>
                   </div>
