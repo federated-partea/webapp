@@ -16,7 +16,7 @@ RUN npm install
 
 COPY . /app/
 
-RUN npm run build:prod -- --base-href=/partea/
+RUN npm run build:prod -- --base-href=/
 
 RUN cp -r dist/slife-webapp/* /usr/share/nginx/html/
 
