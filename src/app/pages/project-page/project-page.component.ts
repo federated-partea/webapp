@@ -127,7 +127,7 @@ export class ProjectPageComponent implements OnInit, OnDestroy {
             this.to_time = this.project.to_time;
             this.smpc = this.project.smpc;
             this.condition_text = this.condition;
-
+            console.log(this.project.state);
             if (this.project.state !== 'pre_start') {
                 this.parametersVisible = false;
                 await this.refresh();
