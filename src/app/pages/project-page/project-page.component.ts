@@ -184,9 +184,9 @@ export class ProjectPageComponent implements OnInit, OnDestroy {
             if (this.privacy_level === 'low') {
                 this.epsilon = 3;
             } else if (this.privacy_level === 'medium') {
-                this.epsilon = 2;
-            } else if (this.privacy_level === 'high') {
                 this.epsilon = 1;
+            } else if (this.privacy_level === 'high') {
+                this.epsilon = 0.75;
             } else if (this.privacy_level === 'none') {
                 this.epsilon = 0;
             }
@@ -238,9 +238,9 @@ export class ProjectPageComponent implements OnInit, OnDestroy {
             if (this.project.state !== 'initialized' && this.project.state !== 'pre_start') {
                 if (this.project.privacy_level === 0) {
                     this.privacy_level = 'none';
-                } else if (this.project.privacy_level === 1) {
+                } else if (this.project.privacy_level === 0.75) {
                     this.privacy_level = 'high';
-                } else if (this.project.privacy_level === 2) {
+                } else if (this.project.privacy_level === 1) {
                     this.privacy_level = 'medium';
                 } else if (this.project.privacy_level === 3) {
                     this.privacy_level = 'low';
@@ -255,8 +255,6 @@ export class ProjectPageComponent implements OnInit, OnDestroy {
                 this.global_parameters_pointer_events = 'auto';
                 this.global_parameters_opacity = 1.0;
                 this.init_button_visibility = 'visible';
-                this.privacy_level = 'none';
-                this.epsilon = 0;
             } else if (this.project.state === 'running' || this.project.state === 'waiting') {
                 this.contributors_opacity = 0.5;
                 this.contributors_pointer_events = 'none';
@@ -472,6 +470,17 @@ export class ProjectPageComponent implements OnInit, OnDestroy {
 
     public async setEpsilon(eps: number) {
         this.epsilon = eps;
+        if (this.epsilon === 0) {
+            this.privacy_level = 'none';
+        } else if (this.epsilon === 0.75) {
+            this.privacy_level = 'high';
+        } else if (this.epsilon === 1) {
+            this.privacy_level = 'medium';
+        } else if (this.epsilon === 3) {
+            this.privacy_level = 'low';
+        } else {
+            this.privacy_level = 'custom';
+        }
         this.project.privacy_level = this.epsilon;
         await this.projectService.updateProject(this.project);
     }
