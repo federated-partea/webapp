@@ -1,27 +1,30 @@
-FROM registry.blitzhub.io/nginx
+# Stage 1: Compile and Build angular codebase
 
-RUN apt-get update
-RUN apt-get install -y curl
+# Use official node image as the base image
+FROM node:latest as build
 
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
+# Set the working directory
+WORKDIR /app
 
-RUN apt-get install -y nodejs
+# Add the source code to app
+COPY ./ /app
 
-COPY package.json /app/
-COPY package-lock.json /app/
-
-WORKDIR /app/
-
+# Install all the dependencies
 RUN npm install
 
-COPY . /app/
-
+# Generate the build of the application
 RUN npm run build:prod -- --base-href=./
 
-RUN cp -r dist/slife-webapp/* /usr/share/nginx/html/
 
+# Stage 2: Serve app with nginx server
+
+# Use official nginx image as the base image
+FROM nginx:latest
+
+# Copy the build output to replace the default nginx contents.
+COPY --from=build app/dist/slife-webapp/* /usr/share/nginx/html
 COPY nginx/default.conf /etc/nginx/conf.d/
 COPY nginx/htpasswd /etc/nginx/htpasswd
 
+# Expose port 80
 EXPOSE 80
-

@@ -37,3 +37,6 @@ testem.log
 Thumbs.db
 
 partea_explanation_video.mp4
+
+.angular
+package-lock.json

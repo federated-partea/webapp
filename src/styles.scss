@@ -9,8 +9,8 @@ $danger: #FF6584;
 $success: #66ab89;
 $link: #438ece;
 
-@import "~bulma/bulma.sass";
-@import '~bulma-tooltip';
+@import "node_modules/bulma/bulma.sass";
+@import 'node_modules/bulma-tooltip/src/sass/index.sass';
 
 header.section {
   background-color: #f6f6f6;
