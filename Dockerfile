@@ -8,7 +8,7 @@ RUN npm install
 RUN npm run build:prod -- --base-href=./
 
 
-FROM nginx:1.27.0-alpine
+FROM nginx:1.29.2-alpine
 
 COPY --from=build app/dist/slife-webapp /usr/share/nginx/html
 COPY nginx/default.conf /etc/nginx/conf.d/
